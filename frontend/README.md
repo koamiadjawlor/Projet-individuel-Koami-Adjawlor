@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# CineScope
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Salut! Bienvenue sur **CineScope**, mon application web pour parcourir un catalogue de films et gérer mes favoris.
 
-## Available Scripts
+Ce projet a été réalisé dans le cadre du cours **SED2515 (Applications web et mobile)** à l'Université d'Ottawa. C'est une application full-stack complète : une interface React qui parle à une API Express, elle-même branchée sur une base de données MySQL.
 
-In the project directory, you can run:
+## Le projet en bref
 
-### `npm start`
+CineScope permet de consulter une liste de films (titre, genre, année, note) et de rechercher dans le catalogue. J'ai voulu garder quelque chose de simple, clair et facile à faire tourner chez soi, tout en respectant une vraie séparation entre le frontend et le backend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies utilisées
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend :** React JS, Axios, Bulma CSS
+- **Backend :** Node.js, Express.js, Sequelize ORM
+- **Base de données :** MySQL (via XAMPP)
 
-### `npm test`
+## Organisation du dépôt
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Le projet est séparé en deux parties indépendantes, à la racine :
 
-### `npm run build`
+```
+CINESCOPE/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── index.js
+│   └── package.json
+└── frontend/
+    ├── public/
+    ├── src/
+    │   ├── components/
+    │   │   └── MovieList.jsx
+    │   ├── App.js
+    │   └── index.js
+    └── package.json
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Lancer le projet chez vous
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Il suffit de suivre les trois étapes dans l'ordre.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Préparer la base de données MySQL
 
-### `npm run eject`
+1. Ouvrez XAMPP et démarrez **Apache** et **MySQL**.
+2. Allez sur `http://localhost/phpmyadmin/`.
+3. Créez la base de données :
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```sql
+CREATE DATABASE cinescope_db;
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Créez la table `movies` et ajoutez quelques films pour commencer :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```sql
+CREATE TABLE movies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    genre VARCHAR(100) NOT NULL,
+    releaseYear INT NOT NULL,
+    rating FLOAT NOT NULL,
+    image VARCHAR(255),
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+INSERT INTO movies (title, genre, releaseYear, rating, createdAt, updatedAt) VALUES
+('Inception', 'Science-Fiction', 2010, 8.8, NOW(), NOW()),
+('Interstellar', 'Science-Fiction', 2014, 8.6, NOW(), NOW()),
+('The Dark Knight', 'Action', 2008, 9.0, NOW(), NOW()),
+('Pulp Fiction', 'Crime', 1994, 8.9, NOW(), NOW()),
+('Forrest Gump', 'Drame', 1994, 8.8, NOW(), NOW());
+```
 
-## Learn More
+### 2. Démarrer le backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Dans un terminal, placez-vous dans le dossier `backend` :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm install
+node index.js
+```
 
-### Code Splitting
+Le serveur tourne alors sur le port `5555`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 3. Démarrer le frontend
 
-### Analyzing the Bundle Size
+Dans un **second** terminal, placez-vous dans le dossier `frontend` :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm install
+npm start
+```
 
-### Making a Progressive Web App
+L'application s'ouvre automatiquement sur `http://localhost:3000`. Et voilà, bon visionnement! 🍿
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Collaboration et Git
 
-### Advanced Configuration
+- **Dépôt :** `SED2515-CineScope`
+- **Collaborateurs :** les comptes du professeur ont été ajoutés dans `Settings > Collaborators`.
+- **Part de code personnel :** environ 85 % du code a été écrit par moi.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🤖 Transparence sur l'IA générative
 
-### Deployment
+Le 4 octobre 2026, j'ai utilisé un outil d'IA générative pour m'aider à structurer mes composants React et à configurer mes routes Express. Le reste du travail, ainsi que la compréhension et l'intégration du code, vient de moi.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+Merci d'avoir pris le temps de regarder mon projet! N'hésitez pas à me faire part de vos commentaires.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*— Koami Adjawlor*
