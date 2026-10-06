@@ -101,7 +101,7 @@ L'application s'ouvre automatiquement sur `http://localhost:3000`. Et voilà, bo
 - **Collaborateurs :** les comptes du professeur ont été ajoutés dans `Settings > Collaborators`.
 - **Part de code personnel :** environ 85 % du code a été écrit par moi.
 
-## 🤖 Transparence sur l'IA générative
+## Transparence sur l'IA générative
 
 Le 4 octobre 2026, j'ai utilisé un outil d'IA générative pour m'aider à structurer mes composants React et à configurer mes routes Express. Le reste du travail, ainsi que la compréhension et l'intégration du code, vient de moi.
 
