@@ -93,7 +93,7 @@ npm install
 npm start
 ```
 
-L'application s'ouvre automatiquement sur `http://localhost:3000`. Et voilà, bon visionnement! 🍿
+L'application s'ouvre automatiquement sur `http://localhost:3000`. Et voilà, bon visionnement! 
 
 ## Collaboration et Git
 
